@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <style>
+      .content {
+        width: 1024px;
+      }
+
+      .disp {
+        height: 200px;
+        border: 1px solid black;
+      }
+
+      .tab_host {
+        display: flex;
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      .tab:hover {
+        cursor: pointer;
+      }
+
+      .tab {
+        width: 200px;
+        border: 1px solid #ededed;
+      }
+
+      #list {
+        border: 1px solid #ededed;
+      }
+    </style>
+  </head>
+  <body>
+      <p>
+        4. 아래의 입력창에 숫자가 입력되지 않도록 하고 길이 제한은 10자로 하시오. <br />숫자가 입력된다면 숫자가 입력되었다고 alert로
+        알려주시오
+      </p>
+      <input type="text" id="te_input" maxlength="10" placeholder="글자만 입력하세요." />
+
+      <p>
+        5.아래의 입력창에 입력 후 저장 버튼을 누르거나 엔터키를 누르면 입력한 내용이 아래의 list에 추가 되도록 하시오. <br />초기화 버튼을
+        누르면 list안의 모든 내용이 지워져야 함
+      </p>
+      <h5>6.추가된 내용을 "각 각" 수정 및 삭제 수 있게 변경하시오.</h5>
+      <form id="form">
+        <input type="text" value="" width="600" id="list_data" name="content" />
+        <button type="submit" id="send" value="show_view">저장</button>
+        <button id = "resetEl" type="reset">초기화</button>
+        <p>리스트</p>
+        <ul id="list">
+        </ul>
+      </form>
+    </div>
+  </body>
+  <script>
+      const el = document.getElementById("te_input") // input ID를 가져옴
+      el.addEventListener("keydown",(e) => {
+        const key = e.key // 이벤트 값
+        if (key <= 9){ // 이벤트 값이 1~9 사이면
+          e.preventDefault();// 초기화 시키고
+          alert("숫자입력 금지 ❌") // alert 호출
+        }
+      });
+      const send = document.getElementById('send');
+      const list = document.getElementById('list');
+      const list_data = document.getElementById('list_data')
+      
+
+      send.addEventListener('click', (e) => { // 저장버튼 누르면,
+        e.preventDefault(); // submit 기본 동작인 새로고침 제거
+        const iV = list_data.value; // iV = inuputValue
+        console.log(iV)
+        if(iV !== ""){ // input값이 비어있지 않다면
+          const li = document.createElement('li');// li를 생성해서
+          li.textContent = iV;// input 값을 li안에 담고
+          list.appendChild(li); // 그값을 ul태그 id = (list) input 값을 담은 li를 안에 자식으로 넣음
+          list_data.value = "";// input 값 초기화
+          // 생성한 리스트에 수정과 삭제 버튼생성
+          const correctionBtn = document.createElement("button");
+          correctionBtn.innerText = "수정";
+          li.appendChild(correctionBtn);
+          const deleteBtn = document.createElement('button');
+          deleteBtn.innerText = "삭제"
+          li.appendChild(deleteBtn);
+
+        deleteBtn.addEventListener('click', (e)=> {
+            const remove = e.target.parentElement;
+            remove.remove()
+        });
+
+        correctionBtn.addEventListener('click', (e)=>{
+            const correnctionLi = e.target.parentElement;
+            
+
+            const newInput = document.createElement('input')
+            correnctionLi.appendChild(newInput);
+
+            const checkBtn = document.createElement('button')
+            checkBtn.innerText = "확인";
+            correnctionLi.appendChild(checkBtn);
+
+
+        })
+        };
+      });
+      
+      
+      
+      const reset = document.getElementById('resetEl')// 리셋 버튼 불러오기
+      
+      reset.addEventListener('click',() =>{
+      
+        list.innerHTML= '';
+      });
+
+      
+      
+
+
+
+  </script>
+</html>

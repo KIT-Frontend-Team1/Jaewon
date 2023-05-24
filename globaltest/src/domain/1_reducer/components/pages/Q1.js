@@ -34,12 +34,12 @@ const ReducerQ1Page = () => {
             name,
             price,
         };
-        dispatch({ type: 'ADD_INGREDIENT', payload: newIngredient });
+        dispatch({ type: 'ADD_INGREDIENT', newIngredient });
     };
 
     //삭제 함수
     const onDeletIngredient = id => {
-        dispatch({ type: 'DELETE_INGREDIENT', payload: id });
+        dispatch({ type: 'DELETE_INGREDIENT', id });
     };
 
     return (

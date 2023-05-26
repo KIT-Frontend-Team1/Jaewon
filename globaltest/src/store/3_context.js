@@ -21,8 +21,16 @@ const userReducer = (state, action) => {
             });
             console.log(updatedState);
             return updatedState;
+
         case 'ADD_RESET':
             return (state = []);
+
+        case 'FILTER_USER':
+            const filteringUser = state.filter(user => user.isEdit === true);
+            console.log(filteringUser);
+
+            return filteringUser;
+
         default:
             return state;
     }

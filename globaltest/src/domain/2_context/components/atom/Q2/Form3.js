@@ -9,7 +9,7 @@ const ContextQ2Form3 = () => {
     return (
         <div>
             <h1>Q2Form3</h1>
-            <button type='button' onClick={onReset}>
+            <button type='reset' onClick={onReset}>
                 RESET
             </button>
         </div>

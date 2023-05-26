@@ -3,9 +3,10 @@ import React from 'react';
 const Q1Form = ({ onAddingredient }) => {
     const handleSubmit = e => {
         e.preventDefault();
+        const id = Math.floor(Math.random() * 1000000);
         const name = e.target.name.value;
         const price = e.target.price.value;
-        onAddingredient(name, price);
+        onAddingredient(name, price, id);
         e.target.reset();
     };
     return (

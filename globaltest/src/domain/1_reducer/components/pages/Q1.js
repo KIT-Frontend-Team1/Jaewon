@@ -28,18 +28,18 @@ const ReducerQ1Page = () => {
     const [ingredients, dispatch] = useReducer(reducer, initialState);
 
     //추가 함수
-    const onAddingredient = (name, price) => {
+    const onAddingredient = (name, price, id) => {
         const newIngredient = {
-            id: Math.floor(Math.random() * 1000000),
+            id,
             name,
             price,
         };
-        dispatch({ type: 'ADD_INGREDIENT', newIngredient });
+        dispatch({ type: 'ADD_INGREDIENT', payload: newIngredient });
     };
 
     //삭제 함수
     const onDeletIngredient = id => {
-        dispatch({ type: 'DELETE_INGREDIENT', id });
+        dispatch({ type: 'DELETE_INGREDIENT', payload: id });
     };
 
     return (

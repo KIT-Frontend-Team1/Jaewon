@@ -1,4 +1,5 @@
 import NavigateButton from '../../../../components/NavigateButton';
+import { useUSerStore } from '../../../../store/3_context';
 import ContextQ2Form from '../atom/Q2/Form';
 import ContextQ2Form3 from '../atom/Q2/Form3';
 
@@ -23,6 +24,10 @@ const ContextQ2Page = () => {
     (일반 state를 사용하는 문제가 아니기 때문에 전역으로 상태관리를 할 수 있도록 해주세요)
     관련 로직은 src/store/3_context.js에 구현해주세요
   */
+    const { dispatch } = useUSerStore();
+    const onFiterUser = () => {
+        dispatch({ type: 'FILTER_USER' });
+    };
 
     return (
         <>
@@ -34,7 +39,9 @@ const ContextQ2Page = () => {
                     marginTop: '32px',
                 }}
             >
-                <button>SUBMIT</button>
+                <button type='button' onClick={onFiterUser}>
+                    SUBMIT
+                </button>
             </div>
             <NavigateButton isLastPage />
         </>

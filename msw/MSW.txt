@@ -1,4 +1,4 @@
-npm i react-redux @reduxjs/toolkit msw axios
+npm i react-redux @reduxjs/toolkit msw axios init public/
 
 MSW ( Mock Service Worker) // npm i msw
 

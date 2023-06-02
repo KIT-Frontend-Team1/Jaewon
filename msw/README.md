@@ -90,7 +90,7 @@
 
 # ctx.status(code)
 
-###ctxstatus()는 응답의 상태 코드를 설정하는 기능을 제공 code에 HTTP 상태코드 지정
+### ctxstatus()는 응답의 상태 코드를 설정하는 기능을 제공 code에 HTTP 상태코드 지정
 #### ex) 1xx, 200, 201, 3xx, 4xx
 
 # ctx.set(header,value)

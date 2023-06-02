@@ -79,16 +79,16 @@
         }),
         
 ---
- #ctx.delay(value)
+ # ctx.delay(value)
 
- ###ctx.delay()는 응답을 지연시키는 기능을 제공 value에 ms 지정
+ ### ctx.delay()는 응답을 지연시키는 기능을 제공 value에 ms 지정
      
     ex)
          rest.get('/api/users', (req, res, ctx) => {
           return res(ctx.delay(1000), ctx.json({ name: 'John Doe' }))
          })
 
-#ctx.status(code)
+# ctx.status(code)
 
 ###ctxstatus()는 응답의 상태 코드를 설정하는 기능을 제공 code에 HTTP 상태코드 지정
 #### ex) 1xx, 200, 201, 3xx, 4xx

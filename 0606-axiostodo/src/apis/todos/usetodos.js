@@ -2,7 +2,7 @@ import { useTodoStore } from 'context/apicontext';
 import { useEffect, useState } from 'react';
 import { axiosInstance } from 'utils/axios';
 
-const useApi = () => {
+const useTodos = () => {
   const { todoList, setTodoList } = useTodoStore();
   // const [todoList, setTodoList] = useState([]);
   const [isAddTodoModal, setIsAddTodoModal] = useState(false);
@@ -74,4 +74,4 @@ const useApi = () => {
   };
 };
 
-export default useApi;
+export default useTodos;

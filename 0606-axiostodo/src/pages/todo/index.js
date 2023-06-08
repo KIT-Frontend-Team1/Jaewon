@@ -10,9 +10,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import { faL } from '@fortawesome/free-solid-svg-icons';
 import { axiosInstance } from 'utils/axios';
 import useApi from 'apis/apis';
+import useTodos from 'apis/todos/usetodos';
 
 const TodoPage = () => {
-  const { todoList, setTodoList, isAddTodoModal, setIsAddTodoModal, getTodoList, addTodo } = useApi();
+  const { todoList, setTodoList, isAddTodoModal, setIsAddTodoModal, getTodoList, addTodo } = useTodos();
   const params = useParams();
 
   // const getTodoList = async () => {
@@ -24,11 +25,9 @@ const TodoPage = () => {
   //     console.error(err);
   //   }
   // };
-
-  useEffect(() => {
-    getTodoList();
-  }, []);
-
+  // useEffect(() => {
+  //   getTodoList();
+  // }, []);
   // const addTodo = async (title, content) => {
   //   try {
   //     if (!title || !content) {
@@ -85,7 +84,7 @@ const TodoPage = () => {
         <S.Container>
           <S.Title>List</S.Title>
           <S.Content>
-            <TodoList todoList={todoList} setTodoList={setTodoList} />
+            <TodoList />
           </S.Content>
           <S.ButtonBox>
             <BasicButton variant={'primary'} size={'full'} onClick={handAddTodoModal}>

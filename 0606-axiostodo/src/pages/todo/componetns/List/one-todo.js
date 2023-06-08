@@ -5,7 +5,8 @@ import { faCheck, faBan, faPen } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import useInput from '../../../../hooks/use-input';
 import { axiosInstance } from 'utils/axios';
-import useApi from 'apis/apis';
+
+import useTodos from 'apis/todos/usetodos';
 
 /**
  * @params : todo {
@@ -15,11 +16,11 @@ import useApi from 'apis/apis';
  * @TODO : refactor
  */
 
-const OneTodo = ({ todo, deleteTodo }) => {
+const OneTodo = ({ todo }) => {
   const { id, state, title, content } = todo;
   const [isEditMode, setIsEditMode] = useState(false);
   const [editContent, onChangeEditContent] = useInput(content);
-  const { updateTodo } = useApi();
+  const { updateTodo, deleteTodo } = useTodos();
 
   /*
         과제

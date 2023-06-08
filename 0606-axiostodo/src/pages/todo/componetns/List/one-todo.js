@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faBan, faPen } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import useInput from '../../../../hooks/use-input';
+import { axiosInstance } from 'utils/axios';
+import useApi from 'apis/apis';
 
 /**
  * @params : todo {
@@ -13,10 +15,11 @@ import useInput from '../../../../hooks/use-input';
  * @TODO : refactor
  */
 
-const OneTodo = ({ todo, updatTodo, deleteTodo }) => {
+const OneTodo = ({ todo, deleteTodo }) => {
   const { id, state, title, content } = todo;
   const [isEditMode, setIsEditMode] = useState(false);
   const [editContent, onChangeEditContent] = useInput(content);
+  const { updateTodo } = useApi();
 
   /*
         과제
@@ -27,7 +30,7 @@ const OneTodo = ({ todo, updatTodo, deleteTodo }) => {
 
   const handleTodoEdit = () => {
     if (!isEditMode) return setIsEditMode(true);
-    updatTodo(id, editContent);
+    updateTodo(id, editContent);
     setIsEditMode(false);
   };
 

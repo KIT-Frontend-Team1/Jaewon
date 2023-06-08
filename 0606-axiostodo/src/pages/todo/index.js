@@ -9,54 +9,44 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { faL } from '@fortawesome/free-solid-svg-icons';
 import { axiosInstance } from 'utils/axios';
+import useApi from 'apis/apis';
 
 const TodoPage = () => {
+  const { todoList, setTodoList, isAddTodoModal, setIsAddTodoModal, getTodoList, addTodo } = useApi();
   const params = useParams();
-  const [isAddTodoModal, setIsAddTodoModal] = useState(false);
-  const [todoList, setTodoList] = useState([]);
 
-  const getTodoList = async () => {
-    try {
-      const res = await axiosInstance.get('/todo');
-      console.log(res);
-      setTodoList(res.data.data);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  // const getTodoList = async () => {
+  //   try {
+  //     const res = await axiosInstance.get('/todo');
+  //     console.log(res);
+  //     setTodoList(res.data.data);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
 
   useEffect(() => {
     getTodoList();
   }, []);
 
-  const addTodo = async (title, content) => {
-    try {
-      if (!title || !content) {
-        const err = new Error();
-        err.type = 'empty error';
-        err.message = '빈칸을 채워주세요';
-        throw err;
-      }
-      await axiosInstance.post('/todo', {
-        title,
-        content,
-      });
-      getTodoList();
-      /* 
-                데이터의 동기화 호출, 다른 사용자의 업데이트 호출, 안정성
-            */
-
-      // setTodoList([res.data.data, ...todoList])
-      /* 
-            낙관적 업데이트 (optimistic update)
-                데이터의 동기화나 일치보다 UX(사용자 경험)개선이 중요할 때 사용
-                반드시 실패 했을 때는 에러 핸들링      
-            */
-      setIsAddTodoModal(false);
-    } catch (err) {
-      throw err;
-    }
-  };
+  // const addTodo = async (title, content) => {
+  //   try {
+  //     if (!title || !content) {
+  //       const err = new Error();
+  //       err.type = 'empty error';
+  //       err.message = '빈칸을 채워주세요';
+  //       throw err;
+  //     }
+  //     await axiosInstance.post('/todo', {
+  //       title,
+  //       content,
+  //     });
+  //     getTodoList();
+  //     setIsAddTodoModal(false);
+  //   } catch (err) {
+  //     throw err;
+  //   }
+  // };
 
   const showTodoToastMessage = e => {
     e.preventDefault();

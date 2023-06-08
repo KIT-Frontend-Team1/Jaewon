@@ -117,6 +117,8 @@ local 파일은 기존에 있던 파일보다 우선 순위가 높습니다
 1. todo, accessToken, api call의 관심사(SOC - 의존성 주입 방법) 분리 (전역 상태 관리 자유)
 2. delete, update -> axios.delete('/todo/3')
                      axios.put('/todo/3, { content, state })
+                     
+                     api call 
 
 
 

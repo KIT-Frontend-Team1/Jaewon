@@ -7,7 +7,7 @@ const useApi = () => {
   // const [todoList, setTodoList] = useState([]);
   const [isAddTodoModal, setIsAddTodoModal] = useState(false);
 
-  const getTodoList = async () => {
+  const getTodoListAPI = async () => {
     try {
       const res = await axiosInstance.get('/todo');
       console.log('getTodoList', res);
@@ -17,10 +17,10 @@ const useApi = () => {
     }
   };
   useEffect(() => {
-    getTodoList();
+    getTodoListAPI();
   }, []);
 
-  const addTodo = async (title, content) => {
+  const addTodoAPI = async (title, content) => {
     try {
       if (!title || !content) {
         const err = new Error();
@@ -32,30 +32,29 @@ const useApi = () => {
         title,
         content,
       });
-      getTodoList();
-      setIsAddTodoModal(false);
+      getTodoListAPI();
     } catch (err) {
       throw err;
     }
   };
 
-  const updateTodo = async (id, content, state) => {
+  const updateTodoAPI = async (id, content, state) => {
     try {
       const res = await axiosInstance.put(`/todo/${id}`, { content, state });
       console.log('업데이트 결과', res);
-      getTodoList();
+      getTodoListAPI();
     } catch (err) {
       console.error(err);
     }
   };
 
-  const deleteTodo = async id => {
+  const deleteTodoAPI = async id => {
     if (window.confirm('정말 삭제하시겠습니까')) {
       try {
         await axiosInstance.delete(`/todo/${id}`);
         // const _todoList = todoList.filter(todo => todo.id !== id);
         // setTodoList(_todoList);
-        getTodoList();
+        getTodoListAPI();
       } catch (err) {
         console.error(err);
       }
@@ -67,10 +66,10 @@ const useApi = () => {
     setTodoList,
     isAddTodoModal,
     setIsAddTodoModal,
-    getTodoList,
-    addTodo,
-    updateTodo,
-    deleteTodo,
+    getTodoListAPI,
+    addTodoAPI,
+    updateTodoAPI,
+    deleteTodoAPI,
   };
 };
 

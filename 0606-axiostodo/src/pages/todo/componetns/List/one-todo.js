@@ -20,7 +20,7 @@ const OneTodo = ({ todo }) => {
   const { id, state, title, content } = todo;
   const [isEditMode, setIsEditMode] = useState(false);
   const [editContent, onChangeEditContent] = useInput(content);
-  const { updateTodo, deleteTodo } = useTodos();
+  const { updateTodo, deleteTodo, toggleCheck } = useTodos();
 
   /*
         과제
@@ -28,6 +28,9 @@ const OneTodo = ({ todo }) => {
         +
         체크 수정 구현하기
     */
+  const toggleState = () => {
+    toggleCheck(id, state);
+  };
 
   const handleTodoEdit = () => {
     if (!isEditMode) return setIsEditMode(true);
@@ -42,7 +45,7 @@ const OneTodo = ({ todo }) => {
   return (
     <S.Wrapper state={state}>
       <S.Header>
-        <S.StateBox state={state}>
+        <S.StateBox state={state} onClick={toggleState}>
           <FontAwesomeIcon icon={faCheck} />
         </S.StateBox>
         <S.Title state={state}>

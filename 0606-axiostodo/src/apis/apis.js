@@ -61,6 +61,13 @@ const useApi = () => {
     }
   };
 
+  const toggleCheckAPI = async (id, state) => {
+    await axiosInstance.put(`/todo/${id}`, {
+      state,
+    });
+    getTodoListAPI();
+  };
+
   return {
     todoList,
     setTodoList,
@@ -70,6 +77,7 @@ const useApi = () => {
     addTodoAPI,
     updateTodoAPI,
     deleteTodoAPI,
+    toggleCheckAPI,
   };
 };
 

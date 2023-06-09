@@ -7,7 +7,8 @@ const useTodos = () => {
   const { todoList, setTodoList } = useTodoStore();
   // const [todoList, setTodoList] = useState([]);
   const [isAddTodoModal, setIsAddTodoModal] = useState(false);
-  const { getTodoListAPi, addTodoAPI, updateTodoAPI, deleteTodoAPI } = useApi();
+  const { getTodoListAPi, addTodoAPI, updateTodoAPI, deleteTodoAPI, toggleCheckAPI } = useApi();
+  const [check, setCheck] = useState(false);
 
   const getTodoList = async () => {
     try {
@@ -35,6 +36,13 @@ const useTodos = () => {
     await deleteTodoAPI(id);
   };
 
+  const toggleCheck = async id => {
+    const newCheck = !check;
+    setCheck(newCheck);
+
+    await toggleCheckAPI(id, newCheck);
+  };
+
   return {
     todoList,
     setTodoList,
@@ -44,6 +52,9 @@ const useTodos = () => {
     addTodo,
     updateTodo,
     deleteTodo,
+    check,
+    setCheck,
+    toggleCheck,
   };
 };
 
